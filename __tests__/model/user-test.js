@@ -2,12 +2,12 @@ const User = require('../../model/user');
 
 //resetowanie stanu bazy danych przed każdym testem
 beforeEach(() => {
-    User.initData();  
+    User.initData();
 });
 
 test('listTest()', () => {
     const users = User.list();
-    expect(users.length).toBe(3); 
+    expect(users.length).toBe(3);
 });
 
 test('addTest()', () => {
@@ -16,7 +16,7 @@ test('addTest()', () => {
     const users = User.list();
     expect(users.length).toBe(4);
     const addedUser = users[3];
-    expect(addedUser.firstName).toBe("Sławomir"); 
+    expect(addedUser.firstName).toBe("Sławomir");
     expect(addedUser.lastName).toBe("Kowal");
 });
 

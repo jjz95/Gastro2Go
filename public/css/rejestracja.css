@@ -32,11 +32,11 @@ body {
     width: 100%;
     margin: 0;
     display: table;
-    margin:auto;
-    min-width:600px;
-    max-width:2000px;
-    min-height:1000px;
-    max-height:2000px;
+    margin: auto;
+    min-width: 600px;
+    max-width: 2000px;
+    min-height: 1000px;
+    max-height: 2000px;
 }
 
 header,
@@ -45,7 +45,7 @@ header,
     justify-content: space-around;
     align-items: stretch;
     border-style: groove;
-    border: 5px ridge #A40000;   
+    border: 5px ridge #A40000;
 }
 
 button {
@@ -95,16 +95,16 @@ hr {
 
 
 main {
-   background-image: url("gastrowallT1.jpg");
+    background-image: url("gastrowallT1.jpg");
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width:600px;
-    max-width:2000px;
-    min-height:800px;
-    max-height:2000px;
+    min-width: 600px;
+    max-width: 2000px;
+    min-height: 800px;
+    max-height: 2000px;
 }
-   
+
 
 footer {
     display: flex;

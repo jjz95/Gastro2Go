@@ -6,22 +6,22 @@ const app = express();
 const port = 3000;
 
 // parsuje dane typu application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 
 //ustawienia sesji
 app.use(session({
-  //hasło do szyfrowania cookie będącym identyfikatorem sesji
-  secret: 'A very very secret password',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    //długość sesji w ms 
-    maxAge: 20 * 60 * 1000 // (20 min)
-  }
-  //wskazane jest ustawienie magazynu sesji (store) na środowisku produkcyjnym 
-  //(np baza danych mognodb)
-  //domyślny magazyn sesji w pamięci raczej nie będzie zbyt 
-  //dobrze działał przy większym obiążeniu...
+    //hasło do szyfrowania cookie będącym identyfikatorem sesji
+    secret: 'A very very secret password',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        //długość sesji w ms
+        maxAge: 20 * 60 * 1000 // (20 min)
+    }
+    //wskazane jest ustawienie magazynu sesji (store) na środowisku produkcyjnym
+    //(np baza danych mognodb)
+    //domyślny magazyn sesji w pamięci raczej nie będzie zbyt
+    //dobrze działał przy większym obiążeniu...
 
 }));
 
@@ -38,10 +38,10 @@ app.use(express.static('public'));
 //domyślnie nie ma dostępu do obiektu sesji w widokach szablonów stron
 //poniższa funkcja ustawia zmienne z sesji tak, aby były dostępne w widoku
 //ważne aby ustawić PRZED kontrolerami
-const pageParamsHelper =  (req, res, next) => {
-  res.locals.isUserLoggedIn = req.session.isUserLoggedIn;
-  res.locals.loggedUser = req.session.loggedUser;
-  next();
+const pageParamsHelper = (req, res, next) => {
+    res.locals.isUserLoggedIn = req.session.isUserLoggedIn;
+    res.locals.loggedUser = req.session.loggedUser;
+    next();
 };
 app.use(pageParamsHelper);
 
@@ -54,14 +54,20 @@ const authCheck = require('./middleware/authCheck');
 //wszystkie akcje zabezpieczone są funkcją authCheck w celu sprawdzenia,
 //czy użytkownik jest zalogowany
 const userController = require('./controller/userController');
-app.use('/users', authCheck, userController.route);
+app.use('/users', /*authCheck,*/ userController.route);
 
 //kontroler do logowania i wylogowywania użytkowników
 const authController = require('./controller/authController');
 app.use('/auth', authController.route);
 
+const infoController = require('./controller/infoController');
+app.use('/info', infoController.route);
+
+const registerController = require('./controller/registerController');
+app.use('/register', registerController.route);
+
 app.get('/', (req, res, next) => {
-  res.render('index', {pageTitle: 'Strona główna'});
+    res.render('index');
 });
 
 app.listen(port, () => {

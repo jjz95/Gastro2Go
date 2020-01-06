@@ -1,5 +1,5 @@
 html {
-   background-image: linear-gradient(to bottom left, white, black);	
+    background-image: linear-gradient(to bottom left, white, black);
 }
 
 a:link {
@@ -32,9 +32,9 @@ body {
     width: 100%;
     margin: 0;
     display: table;
-    margin:auto;
-    min-width:600px;
-    max-width:2000px;
+    margin: auto;
+    min-width: 600px;
+    max-width: 2000px;
 }
 
 
@@ -78,7 +78,7 @@ hr {
     flex-wrap: nowrap;
     justify-content: space-around;
     align-items: center;
-    
+
 }
 
 .headerItemImg {
@@ -101,10 +101,10 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width:600px;
-    max-width:2000px;
-    min-height:800px;
-    max-height:2000px;
+    min-width: 600px;
+    max-width: 2000px;
+    min-height: 800px;
+    max-height: 2000px;
 }
 
 footer {
