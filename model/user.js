@@ -70,7 +70,7 @@ class User {
         nextId = 1;
 
         //dla uproszczenia wszyscy użytkowinicy mają takie samo hasło :)
-        User.add(new User('Jan', 'Kowalski', 'jk@wp.pl', '1234', new Date("1990-03-25"), 123456789, 'fishing', 'koszykowa', '00-001', 'Poland'));
+        User.add(new User('Jan', 'Kowalski', 'jk@wp.pl', '1234', new Date("1990-03-25"), 123456789, 'fishing', 'koszykowa', '00-001', 'France'));
         User.add(new User('Anna', 'Wiśniewska', 'aw@onet.pl', '1234', new Date("1991-03-25"), 111111111, 'skiing', 'hitler strasse', '00-003', 'Germany'));
         User.add(new User('Andrzej', 'Nowak', 'an@gmail.com', '1234', new Date("1992-03-25"), 222222222, 'snowboard', 'smith street', '00-002', 'England'));
     }

@@ -9,44 +9,22 @@ router.get("/", (req, res, next) => {
 
 
 router.get("/panel", (req, res, next) => {
-    res.render('panel')
+    console.log('cccccccccccccccccccccccccccccccccccccccccccccccc2011-09-29', req.session.loggedUser.dateOfBirth)
+    var dateObj = new Date(req.session.loggedUser.dateOfBirth)
+    var month = dateObj.getUTCMonth() + 1; //months from 1-12
+    var day = dateObj.getUTCDate();
+    var year = dateObj.getUTCFullYear();
+    let date
+    if (month < 10)
+        date = year + "-" + "0" + month + "-" + day;
+    else {
+        date = year + "-" + month + "-" + day;
+    }
+    console.log('ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd', req.session.loggedUser.country)
+    res.render('panel', {
+        user: req.session.loggedUser,
+        date: date
+    })
 })
-
-
-// router.get("/", (req, res, next) => {
-//     // const userList = User.list();
-//     // res.render('users/userList', { pageTitle: "Lista użytkowników", userList: userList});
-//     res.render('profil')
-// });
-
-// router.get("/showNewForm", (req, res, next) => {
-//     res.render('users/userForm', { pageTitle: "Nowy użytkownik", formAction: "add", user: {} });
-// });
-
-// router.get("/showEditForm", (req, res, next) => {
-//     //FIXME
-// });
-
-// router.post("/add", (req, res, next) => {
-//   User.hashPassword(req.body.password)
-//     .then(hash => {
-//       const newUser = new User(req.body.first_name, req.body.last_name, req.body.email, hash);
-//       User.add(newUser);
-//       res.redirect("/users");
-//     }); 
-// });
-
-// router.post("/edit", (req, res, next) => {
-//     //FIXME
-// });
-
-// router.get("/showDetails", (req, res, next) => {
-//     //FIXME
-// });
-
-// router.get("/delete", (req, res, next) => {
-//     //FIXME
-// });
-
 
 module.exports.route = router; 
