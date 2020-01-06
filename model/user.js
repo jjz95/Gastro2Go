@@ -43,10 +43,21 @@ class User {
     static list() {
         return userExtent;
     }
-
     //edycja obiektu
-    static edit(user) {
-        //FIXME
+    static async edit(firstName, lastName, email, passwordHash, dateOfBirth, contactNumber, business, address, zipCode, country, id) {
+        let userToEdit = userExtent.find(u => u.id == id)
+        let hashedPass = await bcrypt.hash(passwordHash, 10)
+        userToEdit.firstName = firstName
+        userToEdit.lastName = lastName
+        userToEdit.email = email
+        userToEdit.passwordHash = hashedPass
+        userToEdit.dateOfBirth = dateOfBirth
+        userToEdit.contactNumber = contactNumber
+        userToEdit.business = business
+        userToEdit.address = address
+        userToEdit.zipCode = zipCode
+        userToEdit.country = country
+        return userToEdit;
     }
 
     //usuwanie obiektu po id

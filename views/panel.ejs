@@ -31,7 +31,7 @@
 
 <!-- firstName, lastName, email, passwordHash, dateOfBirth, contactNumber, business, address, zipCode, country, id -->
 <main>
-    <form action="/register" method="POST" novalidate>
+    <form action="/users/panel" method="POST" novalidate>
         <ul class="wrapper">
             <li class="form-row">
                 <label for="fimie">Imie:</label>
@@ -43,7 +43,7 @@
             </li>
             <li class="form-row">
                 <label for="femail">E-mail:</label>
-                <input type="email" id="femail" name="femail" required value="<%= user.lastName %>">
+                <input type="email" id="femail" name="femail" required value="<%= user.email %>">
             </li>
             <li class="form-row">
                 <label for="fpass">Hasło:</label>
