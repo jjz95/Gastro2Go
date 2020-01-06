@@ -28,27 +28,27 @@
 
 
 <main>
-    <form action="/auth/" method="POST" novalidate>
+    <form action="/register" method="POST" novalidate>
         <ul class="wrapper">
             <li class="form-row">
                 <label for="fimie">Imie:</label>
-                <input type="text" id="fimie" name="fimie" required>
+                <input type="text" id="fimie" name="fimie" required value='Jakub'>
             </li>
             <li class="form-row">
                 <label for="fnazwisko">Nazwisko:</label>
-                <input type="text" id="fnazwisko" name="fnazwisko" required>
+                <input type="text" id="fnazwisko" name="fnazwisko" required value="Zarkowski">
             </li>
             <li class="form-row">
                 <label for="femail">E-mail:</label>
-                <input type="email" id="femail" name="femail" required>
+                <input type="email" id="femail" name="femail" required value="jjz95pjatk@gmail.com">
             </li>
             <li class="form-row">
                 <label for="fpass">Hasło:</label>
-                <input type="password" id="fpass" name="fpass" required>
+                <input type="password" id="fpass" name="fpass" required value="1234">
             </li>
             <li class="form-row">
                 <label for="fpass2">Powtórz hasło:</label>
-                <input type="password" id="fpass2" name="fpass2" required>
+                <input type="password" id="fpass2" name="fpass2" required value="1234">
             </li>
             <li class="form-row">
                 <label for="fdate">Data urodzenia:</label>
@@ -56,19 +56,19 @@
             </li>
             <li class="form-row">
                 <label for="fnumer">Numer kontaktowy:</label>
-                <input type="text" id="fnumer" name="fnumer" required>
+                <input type="text" id="fnumer" name="fnumer" required value="123456789">
             </li>
             <li class="form-row">
                 <label for="fdzialalnosc">Działalność gospodarcza:</label>
-                <input type="text" id="fdzialalnosc" name="fdzialalnosc" required>
+                <input type="text" id="fdzialalnosc" name="fdzialalnosc" required value="travel"> 
             </li>
             <li class="form-row">
                 <label for="fadres">Adres:</label>
-                <input type="text" id="fadres" name="fadres" required>
+                <input type="text" id="fadres" name="fadres" required value="wyspianski">
             </li>
             <li class="form-row">
                 <label for="fkod">Kod pocztowy:</label>
-                <input type="text" id="fkod" name="fkod" required>
+                <input type="text" id="fkod" name="fkod" required value="00-004">
             </li>
             <li class="form-row">
                 <label for="fkraj">Kraj:</label>
@@ -250,7 +250,7 @@
                     <option value="PE">Peru</option>
                     <option value="PH">Philippines</option>
                     <option value="PN">Pitcairn</option>
-                    <option value="PL">Poland</option>
+                    <option value="PL" selected>Poland</option>
                     <option value="PT">Portugal</option>
                     <option value="PR">Puerto Rico</option>
                     <option value="QA">Qatar</option>
