@@ -54,7 +54,7 @@ const authCheck = require('./middleware/authCheck');
 //wszystkie akcje zabezpieczone są funkcją authCheck w celu sprawdzenia,
 //czy użytkownik jest zalogowany
 const userController = require('./controller/userController');
-app.use('/users', /*authCheck,*/ userController.route);
+app.use('/users', authCheck, userController.route);
 
 //kontroler do logowania i wylogowywania użytkowników
 const authController = require('./controller/authController');

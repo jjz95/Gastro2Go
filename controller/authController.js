@@ -5,8 +5,8 @@ const User = require('../model/user');
 
 //login
 router.post('/', (req, res, next) => {
-    const email = req.body.email;
-    const password = req.body.password;
+    const email = req.body.flogin;
+    const password = req.body.fpass;
     const user = User.findByEmail(email);
     if (user) {
         user.comparePassword(password)
@@ -14,7 +14,7 @@ router.post('/', (req, res, next) => {
                 if (result) {
                     req.session.isUserLoggedIn = true;
                     req.session.loggedUser = user;
-                    res.redirect('/');
+                    res.redirect('/users/');
                 } else {
                     invalidEmailOrPassword(req, res);
                 }
