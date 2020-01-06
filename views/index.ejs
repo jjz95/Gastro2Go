@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<script async src="../js/index.js"></script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/styleIndex.css" />
+    <link href="https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
+    <title>Gastro2Go</title>
+</head>
+
+<body>
+	
+    <header>
+        <div class="headerItemImg">
+            <div>
+                <a href="index.html"><img class="GastroIcon" src="../img/GASTRO.png" alt="???"></a>
+            </div>
+        </div>
+        <div class="headerItem">
+		<a href="index.html">Strona główna</a>
+		<a href="profil.html">Profil</a>
+		<a href="kontakt.html">Kontakt</a>
+		<a href="O_nas.html">O Nas</a>
+        </div>
+    </header>
+
+
+    <main>
+        <form action="profil.html" method="POST" novalidate>
+            <ul class="wrapper">
+                <li class="form-row">
+                    <label for="flogin">Login:</label>
+                    <input type="text" id="flogin" name="flogin" required>
+                </li>
+                <li class="form-row">
+                    <label for="fpass">Hasło:</label>
+                    <input type="password" id="fpass" name="fpass" required>
+                </li>
+                <li class="form-row">
+                    <button onclick="return validatelogin()" type="submit">Zaloguj</button>   
+ 		    <button type="submit" formaction="rejestracja.html"> Zarejestruj się </button>
+				
+                </li>
+            </ul>
+        </form>
+
+    </main>
+
+    <footer>
+        <div>
+            <p>Jakub Żarkowski S16574</p>
+        </div>
+      
+
+    </footer>
+
+</body>
+
+</html>
