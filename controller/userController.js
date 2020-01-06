@@ -78,7 +78,9 @@ router.post("/panel", async (req, res, next) => {
 })
 
 router.post("/delete", async (req, res, next) => {
-
+    User.delete(req.session.loggedUser.id)
+    req.session.destroy();
+    res.redirect('/');
 })
 
 module.exports.route = router; 

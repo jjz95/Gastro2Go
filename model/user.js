@@ -62,7 +62,7 @@ class User {
 
     //usuwanie obiektu po id
     static delete(id) {
-        //FIXME
+        return userExtent.splice(userExtent.findIndex(u => u.id == id), 1)
     }
 
     //pobieranie obiektu do widoku szczegółów
