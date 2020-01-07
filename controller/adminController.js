@@ -64,7 +64,7 @@ router.delete('/deleteproducts', function (req, res, next) {
     }
 });
 
-router.post('/updateproduct', function (req, res, next) {
+router.post('/updateproduct', async function (req, res, next) {
     const lettersReg = /^([a-zA-Z]{2,})$/;
     var numberReg = /^\d+$/;
     let nazwa = req.body.nazwa.trim()
@@ -75,7 +75,7 @@ router.post('/updateproduct', function (req, res, next) {
         && lettersReg.test(typ)
         && numberReg.test(waga)
         && numberReg.test(cena)) {
-        Product.edit(nazwa, typ, waga, cena, req.body.id)
+        await Product.edit(nazwa, typ, waga, cena, req.body.id)
     }
 
     res.redirect('/admin')
