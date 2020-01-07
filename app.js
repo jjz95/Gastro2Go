@@ -5,6 +5,8 @@ const flash = require('express-flash');
 const app = express();
 const port = 3000;
 
+app.use(express.json());
+
 // parsuje dane typu application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 

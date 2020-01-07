@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/admin.css" />
     <script> var exports = {}; </script>
-
+    <script defer src="/js/delete.js"></script>
     <title>Admin</title>
 </head>
 
@@ -61,15 +61,45 @@
         <br>
         <hr>
         <br>
+        <table>
+            <caption>Products:</caption>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Id</th>
+                    <th>Nazwa</th>
+                    <th>Typ</th>
+                    <th>Waga</th>
+                    <th>Cena</th>
+                </tr>
+            </thead>
+            <tfoot>
+            </tfoot>
+            <tbody id='tbody-interests'>
+                <% productList.forEach(function(product){ %>
+                <tr>
+                    <td><input type="checkbox" name="checkbox<%= product.id %>" value="<%= product.id %>"></td>
+                    <td><%= product.id %></td>
+                    <td><%= product.nazwa %></td>
+                    <td><%= product.typ %></td>
+                    <td><%= product.waga %></td>
+                    <td><%= product.cena %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
         <br>
-        <form action="/admin/addinterest" method="POST">
-            <p>Add new interest to system:</p>
-            <input type="text" name="name" placeholder="Write interest name here" required>
+        <form action="/admin/addproduct" method="POST">
+            <p>Add new product to system:</p>
+            <input type="text" name="nazwa" placeholder="Write product name here" required>
+            <input type="text" name="typ" placeholder="Write product type here" required>
+            <input type="text" name="waga" placeholder="Write product wage here" required>
+            <input type="text" name="cena" placeholder="Write product price here" required>
             <br>
-            <button class="btn" type="submit">Add Interest</button>
+            <button class="btn" type="submit">Add Product</button>
         </form>
         <br>
-        <button onclick="deleteSelectedInterests()" id='deleteBtn' type="submit">Delete Selected Interests</button>
+        <button onclick="deleteSelectedProducts()" id='deleteBtn' type="submit">Delete Selected Products</button>
         <br>
         <hr>
         <br>

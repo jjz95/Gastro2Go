@@ -2,18 +2,38 @@ var express = require('express');
 var router = express.Router();
 
 var User = require('../model/user')
+var Product = require('../model/product')
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-        res.render('admin', {
-            userList: User.list()
-            // interestList: Interest.list()
-        })
+    res.render('admin', {
+        userList: User.list(),
+        productList: Product.list()
+        // interestList: Interest.list()
+    })
 });
 
 router.get('/logout', function (req, res, next) {
     req.session.destroy();
     res.redirect('/');
+});
+
+router.post('/addproduct', function (req, res, next) {
+    const lettersReg = /^([a-zA-Z]{2,})$/;
+    var numberReg = /^\d+$/;
+    let nazwa = req.body.nazwa.trim()
+    let typ = req.body.typ.trim()
+    let waga = req.body.waga.trim()
+    let cena = req.body.cena.trim()
+    if (lettersReg.test(nazwa)
+        && lettersReg.test(typ)
+        && numberReg.test(waga)
+        && numberReg.test(cena)) {
+        let newProduct = new Product(nazwa, typ, waga, cena)
+        Product.add(newProduct);
+    }
+
+    res.redirect('/admin')
 });
 
 // router.post('/addinterest', function (req, res, next) {
@@ -28,21 +48,21 @@ router.get('/logout', function (req, res, next) {
 
 // });
 
-// router.delete('/deleteinterests', function (req, res, next) {
-//     try {
-//         console.log('heyyyy')
-//         req.body.interestsToDelete.forEach(e => {
-//             if (e.toDelete)
-//                 Interest.delete(e.id)
-//             console.log('q', e)
-//         });
-//         console.log('w', req.body.interestsToDelete)
-//         res.end()
-//     }
-//     catch (error) {
-//         console.log(error)
-//     }
-// });
+router.delete('/deleteproducts', function (req, res, next) {
+    try {
+        console.log('pppppppppppppppppppppppppppppppppppppppppppppp', req.body.productsToDelete)
+        req.body.productsToDelete.forEach(e => {
+            if (e.toDelete)
+                Product.delete(e.id)
+            console.log('q', e)
+        });
+        console.log('w', req.body.productsToDelete)
+        res.end()
+    }
+    catch (error) {
+        console.log(error)
+    }
+});
 
 
 module.exports.route = router;

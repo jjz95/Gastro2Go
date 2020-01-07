@@ -3,16 +3,23 @@ form {
     flex-direction: column;
 }
 
+
 table,
 th,
 td {
-    border: 1px solid yellow;
+    border: 1px solid blueviolet;
+    background-color: rgb(255, 255, 255, 0.5);
 }
 
 body {
-    background-color: chocolate;
-}
+background-image: url(gastrowall1.jpg);}
 
 hr {
-    color: yellow
+    color: blueviolet
 }
+
+a, caption, p, h1 {
+    color: aliceblue;
+}
+
+
