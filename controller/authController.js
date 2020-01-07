@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../model/user');
+const Admin = require('../model/admin');
 
 //login
-router.post('/', (req, res, next) => {
+router.post('/', (req, res, next)  => {
     const email = req.body.flogin;
     const password = req.body.fpass;
     const user = User.findByEmail(email);
@@ -20,7 +21,30 @@ router.post('/', (req, res, next) => {
                 }
             })
     } else {
-        invalidEmailOrPassword(req, res);
+        var foundAdmin = Admin.list().find(u => u.email.toLowerCase() === email.toLowerCase());
+        if(foundAdmin){
+            foundAdmin.comparePassword(password)
+            .then(result => {
+                if (result) {
+                    console.log('ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',result)
+                    req.session.isAdminLoggedIn = true;
+                    req.session.loggedAdmin = foundAdmin;
+                    res.redirect('/admin/');
+                } else {
+                    console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',result)
+                    invalidEmailOrPassword(req, res);
+                }
+            }).catch(err => console.log(err))
+            // let isAdminPassCorrect = await bcrypt.compare(bodyPassword, foundAdmin.password)
+
+            // if (isAdminPassCorrect) {
+            //     res.redirect('/admin')
+            // } else {
+            //     invalidEmailOrPassword(req, res, bodyEmail)
+            // }
+        } else {
+            invalidEmailOrPassword(req, res);
+        }
     }
 });
 

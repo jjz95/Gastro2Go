@@ -6,7 +6,7 @@ const app = express();
 const port = 3000;
 
 // parsuje dane typu application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //ustawienia sesji
 app.use(session({
@@ -41,9 +41,21 @@ app.use(express.static('public'));
 const pageParamsHelper = (req, res, next) => {
     res.locals.isUserLoggedIn = req.session.isUserLoggedIn;
     res.locals.loggedUser = req.session.loggedUser;
+    res.locals.isAdminLoggedIn = req.session.isAdminLoggedIn;
+    res.locals.loggedAdmin = req.session.loggedAdmin;
+    console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', req.session.isUserLoggedIn, req.session.loggedUser)
     next();
 };
 app.use(pageParamsHelper);
+
+// const pageParamsHelperAdmin = (req, res, next) => {
+//     // res.locals.isAdminLoggedIn = req.session.isAdminLoggedIn;
+//     // res.locals.loggedAdmin = req.session.loggedAdmin;
+//     // console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww', req.session.isAdminLoggedIn, req.session.loggedAdmin)
+//     console.log('oooooooooooooooooooooooooooooooooooooooooooo')
+//     next();
+// };
+// app.use(pageParamsHelperAdmin);
 
 //funkcja sprawdzająca, czy użytkownik jest zalogowany
 //bez niej byłoby możliwe wykonanie niedozwolonej akcji przez niezalogowanego użytkownika
@@ -55,6 +67,11 @@ const authCheck = require('./middleware/authCheck');
 //czy użytkownik jest zalogowany
 const userController = require('./controller/userController');
 app.use('/users', authCheck, userController.route);
+
+const authAdminCheck = require('./middleware/authAdminCheck');
+
+const adminController = require('./controller/adminController');
+app.use('/admin', authAdminCheck, adminController.route);
 
 //kontroler do logowania i wylogowywania użytkowników
 const authController = require('./controller/authController');
