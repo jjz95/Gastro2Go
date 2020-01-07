@@ -64,5 +64,21 @@ router.delete('/deleteproducts', function (req, res, next) {
     }
 });
 
+router.post('/updateproduct', function (req, res, next) {
+    const lettersReg = /^([a-zA-Z]{2,})$/;
+    var numberReg = /^\d+$/;
+    let nazwa = req.body.nazwa.trim()
+    let typ = req.body.typ.trim()
+    let waga = req.body.waga.trim()
+    let cena = req.body.cena.trim()
+    if (lettersReg.test(nazwa)
+        && lettersReg.test(typ)
+        && numberReg.test(waga)
+        && numberReg.test(cena)) {
+        Product.edit(nazwa, typ, waga, cena, req.body.id)
+    }
+
+    res.redirect('/admin')
+});
 
 module.exports.route = router;

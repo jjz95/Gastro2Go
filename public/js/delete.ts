@@ -10,6 +10,7 @@ function deleteSelectedProducts() {
         for (let i = 0; i < trs.length; ++i) {
             let currRow = <HTMLTableRowElement>trs[i]
             let currCheckboxCell = currRow.cells[0]
+            
             let currIdCell = currRow.cells[1]
             let currCheckBox = <HTMLInputElement>currCheckboxCell.firstElementChild
 
