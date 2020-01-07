@@ -6,7 +6,7 @@ const User = require('../model/user');
 router.get("/", (req, res, next) => {
     res.render('rejestracja')
 })
-//firstName, lastName, email, passwordHash, dateOfBirth, contactNumber, business, address, zipCode, country
+
 router.post("/", async (req, res, next) => {
     const dateReg = /^\d{4}[\/\-]((0?[1-9]|1[012])|[a-z]+)[\/\-](0?[1-9]|[12][0-9]|3[01])$/;
     const emailReg = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -25,7 +25,6 @@ router.post("/", async (req, res, next) => {
         let kod = req.body.fkod
         let kraj = req.body.fkraj
 
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
 
         if (pass === pass2 &&
             lettersReg.test(imie) &&
@@ -42,10 +41,7 @@ router.post("/", async (req, res, next) => {
             const newUser = new User(imie, nazwisko, email, pass, date, numer, dzialalnosc, adres, kod, kraj);
             await User.add(newUser);
 
-        } else {
-            console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
         }
-        console.log(User.list())
         res.redirect("/");
     }
 });

@@ -26,12 +26,10 @@ router.post('/', (req, res, next)  => {
             foundAdmin.comparePassword(password)
             .then(result => {
                 if (result) {
-                    console.log('ffffffffffffffffffffffffffffffffffffffffffffffffffffffffff',result)
                     req.session.isAdminLoggedIn = true;
                     req.session.loggedAdmin = foundAdmin;
                     res.redirect('/admin/');
                 } else {
-                    console.log('zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz',result)
                     invalidEmailOrPassword(req, res);
                 }
             }).catch(err => console.log(err))

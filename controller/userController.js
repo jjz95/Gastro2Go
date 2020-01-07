@@ -8,7 +8,6 @@ router.get("/", (req, res, next) => {
 })
 
 router.get("/panel", (req, res, next) => {
-    console.log('cccccccccccccccccccccccccccccccccccccccccccccccc2011-09-29', req.session.loggedUser.dateOfBirth)
     var dateObj = new Date(req.session.loggedUser.dateOfBirth)
     var month = dateObj.getUTCMonth() + 1; //months from 1-12
     var day = dateObj.getUTCDate();
@@ -19,7 +18,6 @@ router.get("/panel", (req, res, next) => {
     else {
         date = year + "-" + month + "-" + day;
     }
-    console.log('ddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd', req.session.loggedUser.country)
     res.render('panel', {
         user: req.session.loggedUser,
         date: date
@@ -45,8 +43,6 @@ router.post("/panel", async (req, res, next) => {
         let kod = req.body.fkod
         let kraj = req.body.fkraj
 
-        console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
-
         if (pass === pass2 &&
             lettersReg.test(imie) &&
             lettersReg.test(nazwisko) &&
@@ -69,10 +65,7 @@ router.post("/panel", async (req, res, next) => {
             req.session.loggedUser.address = adres
             req.session.loggedUser.zipCode = kod
             req.session.loggedUser.country = kraj
-        } else {
-            console.log('bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb')
         }
-        console.log(User.list())
         res.redirect("/users");
     }
 })

@@ -1,5 +1,4 @@
-//licznik id
-let nextId = 1;
+
 //ekstensja klasy (wszystkie obiekty)
 const orderComponentExtent = [];
 
@@ -33,7 +32,6 @@ class OrderComponent {
     static async edit(idUser, idProduct, iloscProduktow, dataZamowienia, statusZamowienia) {
         let orderComponentToEdit = orderComponentExtent.find(u => u.idUser == idUser && u.idProduct == idProduct)
         orderComponentToEdit.iloscProduktow = iloscProduktow
-        orderComponentToEdit.dataZamowienia = dataZamowienia
         orderComponentToEdit.dataZamowienia = dataZamowienia
         orderComponentToEdit.statusZamowienia = statusZamowienia
         return orderComponentToEdit;

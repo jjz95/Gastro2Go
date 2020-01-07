@@ -45,19 +45,9 @@ const pageParamsHelper = (req, res, next) => {
     res.locals.loggedUser = req.session.loggedUser;
     res.locals.isAdminLoggedIn = req.session.isAdminLoggedIn;
     res.locals.loggedAdmin = req.session.loggedAdmin;
-    console.log('qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq', req.session.isUserLoggedIn, req.session.loggedUser)
     next();
 };
 app.use(pageParamsHelper);
-
-// const pageParamsHelperAdmin = (req, res, next) => {
-//     // res.locals.isAdminLoggedIn = req.session.isAdminLoggedIn;
-//     // res.locals.loggedAdmin = req.session.loggedAdmin;
-//     // console.log('wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww', req.session.isAdminLoggedIn, req.session.loggedAdmin)
-//     console.log('oooooooooooooooooooooooooooooooooooooooooooo')
-//     next();
-// };
-// app.use(pageParamsHelperAdmin);
 
 //funkcja sprawdzająca, czy użytkownik jest zalogowany
 //bez niej byłoby możliwe wykonanie niedozwolonej akcji przez niezalogowanego użytkownika

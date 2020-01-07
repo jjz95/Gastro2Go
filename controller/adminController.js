@@ -50,13 +50,10 @@ router.post('/addproduct', function (req, res, next) {
 
 router.delete('/deleteproducts', function (req, res, next) {
     try {
-        console.log('pppppppppppppppppppppppppppppppppppppppppppppp', req.body.productsToDelete)
         req.body.productsToDelete.forEach(e => {
             if (e.toDelete)
                 Product.delete(e.id)
-            console.log('q', e)
         });
-        console.log('w', req.body.productsToDelete)
         res.end()
     }
     catch (error) {
