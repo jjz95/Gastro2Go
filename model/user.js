@@ -68,13 +68,6 @@ class User {
         return userExtent.splice(userExtent.findIndex(u => u.id == id), 1)
     }
 
-    //pobieranie obiektu do widoku szczegółów
-    //może być potrzebne pobranie dodatkowych danych
-    //np. przez złączenia JOIN w relacyjnej bazie danych
-    static details(id) {
-        //FIXME
-    }
-
     //metoda resetuje stan bazy i dodaje rekordy testowe
     //przydatna do testów
     static async initData() {
