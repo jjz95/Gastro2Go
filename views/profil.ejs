@@ -5,71 +5,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/profil.css"/>
-    <link rel="stylesheet" href="/css/styleIndex.css"/>
+    <link rel="stylesheet" href="/css/profil.css" />
+    <link rel="stylesheet" href="/css/styleIndex.css" />
     <link href="https://fonts.googleapis.com/css?family=Sedgwick+Ave+Display&display=swap" rel="stylesheet">
     <title>Gastro2Go</title>
 </head>
 
 <body>
 
-<header>
-    <div class="headerItemImg">
-        <div>
-            <a href="/users/"><img class="GastroIcon" src="/img/GASTRO.png" alt="???"></a>
+    <header>
+        <div class="headerItemImg">
+            <div>
+                <a href="/users/"><img class="GastroIcon" src="/img/GASTRO.png" alt="???"></a>
+            </div>
         </div>
-    </div>
-    <div class="headerItem">
-        <a href="/users/panel">Twój Panel</a>
-        <a href="/users">Profil</a>
-        <a href="/info/kontakt">Kontakt</a>
-        <a href="/info/onas">O Nas</a>
-        <a href="/auth/logout">Wyloguj</a>
-    </div>
-</header>
+        <div class="headerItem">
+            <a href="/users/panel">Twój Panel</a>
+            <a href="/users">Profil</a>
+            <a href="/info/kontakt">Kontakt</a>
+            <a href="/info/onas">O Nas</a>
+            <a href="/auth/logout">Wyloguj</a>
+        </div>
+    </header>
 
-<main>
-    <table>
-        <caption>Products:</caption>
-        <thead>
-            <tr>
-                <th>Nazwa</th>
-                <th>Typ</th>
-                <th>Waga</th>
-                <th>Waga ogolem</th>
-                <th>Cena</th>
-                <th>Cena ogolem</th>
-                <th>Ilosc</th>
-            </tr>
-        </thead>
-        <tfoot>
-        </tfoot>
-        <tbody>
-            <% productList.forEach(function(pv){ %>
-            <tr>
-                <form action="/users/removeproduct/<%= pv.product.id %>" method="POST">
-                    <td><%= pv.product.nazwa %></td>
-                    <td><%= pv.product.typ %></td>
-                    <td><%= pv.product.waga %></td>
-                    <td><%= pv.product.cena %></td>
-                    <td><%= pv.product.waga * pv.ilosc %></td>
-                    <td><%= pv.product.cena * pv.ilosc %></td>
-                    <td><input type="number" name="ilosc" required value="<%= pv.ilosc %>"></td>
-                    <td><button type="submit">Remove Product</button></td>
+    <main>
+        <div class="main">
+            <div class="product-table">
+                <table>
+                    <caption>Products:</caption>
+                    <thead>
+                        <tr>
+                            <th>Nazwa</th>
+                            <th>Typ</th>
+                            <th>Waga</th>
+                            <th>Waga ogolem</th>
+                            <th>Cena</th>
+                            <th>Cena ogolem</th>
+                            <th>Ilosc</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                    </tfoot>
+                    <tbody>
+                        <% if(productList.length > 0){ %>
+                            <% productList.forEach(function(pv){ %>
+                            <tr>
+                                <form action="/users/removeproduct/<%= pv.product.id %>" method="POST">
+                                    <td><%= pv.product.nazwa %></td>
+                                    <td><%= pv.product.typ %></td>
+                                    <td><%= pv.product.waga %></td>
+                                    <td><%= pv.product.cena %></td>
+                                    <td><%= pv.product.waga * pv.ilosc %></td>
+                                    <td><%= pv.product.cena * pv.ilosc %></td>
+                                    <td><input type="number" name="ilosc" required value="<%= pv.ilosc %>"></td>
+                                    <td><button type="submit">Remove Product</button></td>
+                                </form>
+                            </tr>
+                            <% }) %>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <div>
+                <form action="/users/addproduct" method="POST">
+                    <p class="inline-block">Add new product to your cart:</p>
+                    <select name="productId" class="inline-block">
+                        <% if (restProductList.length > 0) { %>
+                        <% restProductList.forEach(function(rp){ %>
+                        <option value="<%= rp.id %>"><%= rp.nazwa %></option>
+                        <% })} %>
+                    </select>
+                    <div>
+                        <button class="inline-block" type="submit">Add Product</button >
+                    </div>
                 </form>
-            </tr>
-            <% }) %>
-        </tbody>
-    </table>
-</main>
+            </div>
+        </div>
+    </main>
 
-<footer>
-    <div>
-        <p>Jakub Żarkowski S16574</p>
-    </div>
+    <footer>
+        <div>
+            <p>Jakub Żarkowski S16574</p>
+        </div>
 
 
-</footer>
+    </footer>
 
 </body>
 

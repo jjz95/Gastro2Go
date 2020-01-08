@@ -8,19 +8,32 @@ const OrderComponent = require('../model/orderComponent');
 const ProductView = require('../model/productView');
 
 router.get("/", (req, res, next) => {
-    let productList = [] 
-    console.log(Product.list())
+    let productList = []
+    let products = []
     OrderComponent.list()
         .filter(oc => oc.idUser == req.session.loggedUser.id)
         .forEach(oc => {
-            console.log('oooooooooooooooooooooooooooooooooooooooo',oc)
-            console.log('ppppppppppppppppppppppppppppppppppppp', Product.list().find(p => p.id == oc.idProduct))
-            let newProdView = new ProductView(Product.list().find(p => p.id == oc.idProduct), oc.ilosc)
-            console.log(newProdView) 
+            let newProd = Product.list().find(p => p.id == oc.idProduct)
+            products.push(newProd)
+            let newProdView = new ProductView(newProd, oc.ilosc)
             productList.push(newProdView)
         })
 
-    res.render('profil', { productList: productList })
+    let restProductList = []
+    restProductList = Product.list().filter( ( el ) => !products.includes( el ) );
+
+    // OrderComponent.list()
+    //     .filter(oc => oc.idUser != req.session.loggedUser.id)
+    //     .forEach(oc => {
+    //         restProductList.push(Product.list().find(p => p.id == oc.idProduct))
+    //     })
+
+    //     Product.list().filter(p => p.id == )
+
+    res.render('profil', {
+        productList: productList,
+        restProductList: restProductList
+    })
 })
 
 router.get("/panel", (req, res, next) => {
@@ -97,5 +110,13 @@ router.post("/removeproduct/:id", (req, res, next) => {
     res.redirect('/users')
 })
 
+router.post("/addproduct", (req, res, next) => {
+    let userId = req.session.loggedUser.id
+    let productId = req.body.productId
+    if (!isNaN(userId) && !isNaN(productId) && userId != '' && productId != '') {
+        OrderComponent.add(new OrderComponent(userId, productId, 1))
+    }
+    res.redirect('/users')
+})
 
 module.exports.route = router; 

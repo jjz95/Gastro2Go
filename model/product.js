@@ -66,6 +66,7 @@ class Product {
         Product.add(new Product('pizza', 'food', 2, 20));
         Product.add(new Product('schabowy', 'food', 1, 10));
         Product.add(new Product('patelnia', 'tool', 3, 40));
+        Product.add(new Product('pierogi', 'food', 4, 5));
     }
 }
 
