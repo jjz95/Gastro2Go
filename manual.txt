@@ -31,3 +31,6 @@ Dodatkowe biblioteki użyte w projekcie:
 
 Instalacja nowej biblioteki (dla nowego projektu):
 npm install <nazwa_biblioteki> 
+
+                    <th>Ilosc</th>
+                    <th>Cena ogolem</th>

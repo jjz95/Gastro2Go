@@ -29,26 +29,38 @@
 </header>
 
 <main>
-    <table id=testing>
-
-        <tr>
-            <th>Month</th>
-            <th>Savings</th>
-        </tr>
-        <tr>
-            <td>January</td>
-            <td>$100</td>
-        </tr>
-        <tr>
-            <td>February</td>
-            <td>$80</td>
-        </tr>
-        <tr>
-            <td>Sum</td>
-            <td>$180</td>
-        </tr>
+    <table>
+        <caption>Products:</caption>
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Typ</th>
+                <th>Waga</th>
+                <th>Waga ogolem</th>
+                <th>Cena</th>
+                <th>Cena ogolem</th>
+                <th>Ilosc</th>
+            </tr>
+        </thead>
+        <tfoot>
+        </tfoot>
+        <tbody>
+            <% productList.forEach(function(pv){ %>
+            <tr>
+                <form action="/users/removeproduct/<%= pv.product.id %>" method="POST">
+                    <td><%= pv.product.nazwa %></td>
+                    <td><%= pv.product.typ %></td>
+                    <td><%= pv.product.waga %></td>
+                    <td><%= pv.product.cena %></td>
+                    <td><%= pv.product.waga * pv.ilosc %></td>
+                    <td><%= pv.product.cena * pv.ilosc %></td>
+                    <td><input type="number" name="ilosc" required value="<%= pv.ilosc %>"></td>
+                    <td><button type="submit">Remove Product</button></td>
+                </form>
+            </tr>
+            <% }) %>
+        </tbody>
     </table>
-
 </main>
 
 <footer>

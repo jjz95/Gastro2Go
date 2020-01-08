@@ -4,17 +4,15 @@ const orderComponentExtent = [];
 
 class OrderComponent {
     //parametr id jest na końcu, bo jest opcjonalny
-    constructor(idUser, idProduct, iloscProduktow, dataZamowienia, statusZamowienia) {
+    constructor(idUser, idProduct, ilosc) {
         this.idUser = idUser
         this.idProduct = idProduct
-        this.iloscProduktow = iloscProduktow
-        this.dataZamowienia = dataZamowienia
-        this.statusZamowienia = statusZamowienia
+        this.ilosc = ilosc
     }
 
     //dodawanie obiektu do bazy
     static async add(orderComponent) {
-        if (!OrderComponent.list().some(u => u.idUser == idUser && u.idProduct == idProduct)) {
+        if (!OrderComponent.list().some(u => u.idUser == orderComponent.idUser && u.idProduct == orderComponent.idProduct)) {
             orderComponentExtent.push(orderComponent);
             return true;
         }
@@ -29,24 +27,15 @@ class OrderComponent {
         return orderComponentExtent;
     }
     //edycja obiektu
-    static async edit(idUser, idProduct, iloscProduktow, dataZamowienia, statusZamowienia) {
+    static async edit(idUser, idProduct, ilosc) {
         let orderComponentToEdit = orderComponentExtent.find(u => u.idUser == idUser && u.idProduct == idProduct)
-        orderComponentToEdit.iloscProduktow = iloscProduktow
-        orderComponentToEdit.dataZamowienia = dataZamowienia
-        orderComponentToEdit.statusZamowienia = statusZamowienia
+        orderComponentToEdit.ilosc = ilosc
         return orderComponentToEdit;
     }
 
     //usuwanie obiektu po id
-    static delete(id) {
+    static delete(idUser, idProduct) {
         return orderComponentExtent.splice(orderComponentExtent.findIndex(u => u.idUser == idUser && u.idProduct == idProduct), 1)
-    }
-
-    //pobieranie obiektu do widoku szczegółów
-    //może być potrzebne pobranie dodatkowych danych
-    //np. przez złączenia JOIN w relacyjnej bazie danych
-    static details(id) {
-        //FIXME
     }
 
     //metoda resetuje stan bazy i dodaje rekordy testowe
@@ -54,13 +43,10 @@ class OrderComponent {
     static async initData() {
         //usuwamy zawartość tablicy
         orderComponentExtent.splice(0, orderComponentExtent.length);
-        //resetujemy licznik id
-        nextId = 1;
 
-        //nazwa, typ, waga, data_produkcji, data_waznosci, cena
-        OrderComponent.add(new OrderComponent('pizza', 'food', 2, 20));
-        OrderComponent.add(new OrderComponent('schabowy', 'food', 1, 10));
-        OrderComponent.add(new OrderComponent('patelnia', 'tool', 3, 40));
+        OrderComponent.add(new OrderComponent(1, 1, 1));
+        OrderComponent.add(new OrderComponent(1, 2, 2));
+        OrderComponent.add(new OrderComponent(2, 1, 3));
     }
 }
 

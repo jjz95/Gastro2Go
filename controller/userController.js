@@ -2,9 +2,25 @@ const express = require('express');
 const router = express.Router();
 
 const User = require('../model/user');
+const Product = require('../model/product');
+const OrderComponent = require('../model/orderComponent');
+
+const ProductView = require('../model/productView');
 
 router.get("/", (req, res, next) => {
-    res.render('profil')
+    let productList = [] 
+    console.log(Product.list())
+    OrderComponent.list()
+        .filter(oc => oc.idUser == req.session.loggedUser.id)
+        .forEach(oc => {
+            console.log('oooooooooooooooooooooooooooooooooooooooo',oc)
+            console.log('ppppppppppppppppppppppppppppppppppppp', Product.list().find(p => p.id == oc.idProduct))
+            let newProdView = new ProductView(Product.list().find(p => p.id == oc.idProduct), oc.ilosc)
+            console.log(newProdView) 
+            productList.push(newProdView)
+        })
+
+    res.render('profil', { productList: productList })
 })
 
 router.get("/panel", (req, res, next) => {
@@ -75,5 +91,11 @@ router.post("/delete", async (req, res, next) => {
     req.session.destroy();
     res.redirect('/');
 })
+
+router.post("/removeproduct/:id", (req, res, next) => {
+    OrderComponent.delete(req.session.loggedUser.id, req.params.id)
+    res.redirect('/users')
+})
+
 
 module.exports.route = router; 
