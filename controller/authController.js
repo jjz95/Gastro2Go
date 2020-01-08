@@ -4,8 +4,11 @@ const router = express.Router();
 const User = require('../model/user');
 const Admin = require('../model/admin');
 
+const authRedirect = require('../middleware/authRedirect');
+
+
 //login
-router.post('/', (req, res, next)  => {
+router.post('/', authRedirect, (req, res, next)  => {
     const email = req.body.flogin;
     const password = req.body.fpass;
     const user = User.findByEmail(email);

@@ -84,8 +84,8 @@
                         <input type="hidden" name="id" value="<%= product.id %>" />
                         <td><input type="text" name="nazwa" required value="<%= product.nazwa %>"></td>
                         <td><input type="text" name="typ" required value="<%= product.typ %>"></td>
-                        <td><input type="number" name="waga" required value="<%= product.waga %>"></td>
-                        <td><input type="number" name="cena" required value="<%= product.cena %>"></td>
+                        <td><input type="number" min="0" name="waga" required value="<%= product.waga %>"></td>
+                        <td><input type="number" min="0" name="cena" required value="<%= product.cena %>"></td>
                         <td><button type="submit">Edit Product</button></td>
 
                     </form>
@@ -98,8 +98,8 @@
             <p>Add new product to system:</p>
             <input type="text" name="nazwa" placeholder="Write product name here" required>
             <input type="text" name="typ" placeholder="Write product type here" required>
-            <input type="number" name="waga" placeholder="Write product wage here" required>
-            <input type="number" name="cena" placeholder="Write product price here" required>
+            <input type="number" min="0" name="waga" placeholder="Write product wage here" required>
+            <input type="number" min="0" name="cena" placeholder="Write product price here" required>
             <br>
             <button class="btn" type="submit">Add Product</button>
         </form>

@@ -74,6 +74,8 @@ const authAdminCheck = require('./middleware/authAdminCheck');
 const adminController = require('./controller/adminController');
 app.use('/admin', authAdminCheck, adminController.route);
 
+
+
 //kontroler do logowania i wylogowywania użytkowników
 const authController = require('./controller/authController');
 app.use('/auth', authController.route);
@@ -84,7 +86,10 @@ app.use('/info', infoController.route);
 const registerController = require('./controller/registerController');
 app.use('/register', registerController.route);
 
-app.get('/', (req, res, next) => {
+const authRedirect = require('./middleware/authRedirect');
+const authAdminRedirect = require('./middleware/authAdminRedirect');
+
+app.get('/', authRedirect, authAdminRedirect, (req, res, next) => {
     res.render('index');
 });
 

@@ -50,20 +50,21 @@
                     </tfoot>
                     <tbody id="tbody-orderComponents">
                         <% if(productList.length > 0){ %>
-                            <% productList.forEach(function(pv){ %>
-                            <tr>
-                                <form action="/users/removeproduct/<%= pv.product.id %>" method="POST">
-                                    <td><%= pv.product.nazwa %></td>
-                                    <td><%= pv.product.typ %></td>
-                                    <td id="waga<%= pv.product.id %>"><%= pv.product.waga %></td>
-                                    <td id="cena<%= pv.product.id %>"><%= pv.product.cena %></td>
-                                    <td id="waga-ilosc<%= pv.product.id %>"><%= pv.product.waga * pv.ilosc %></td>
-                                    <td id="cena-ilosc<%= pv.product.id %>"><%= pv.product.cena * pv.ilosc %></td>
-                                    <td><input class="ilosc" id="ilosc<%= pv.product.id %>" type="number" name="ilosc" required value="<%= pv.ilosc %>"></td>
-                                    <td><button type="submit">Remove Product</button></td>
-                                </form>
-                            </tr>
-                            <% }) %>
+                        <% productList.forEach(function(pv){ %>
+                        <tr>
+                            <form action="/users/removeproduct/<%= pv.product.id %>" method="POST">
+                                <td><%= pv.product.nazwa %></td>
+                                <td><%= pv.product.typ %></td>
+                                <td id="waga<%= pv.product.id %>"><%= pv.product.waga %></td>
+                                <td id="cena<%= pv.product.id %>"><%= pv.product.cena %></td>
+                                <td id="waga-ilosc<%= pv.product.id %>"><%= pv.product.waga * pv.ilosc %></td>
+                                <td id="cena-ilosc<%= pv.product.id %>"><%= pv.product.cena * pv.ilosc %></td>
+                                <td><input class="ilosc" id="ilosc<%= pv.product.id %>" min="1" type="number" name="ilosc"
+                                        required value="<%= pv.ilosc %>"></td>
+                                <td><button type="submit">Remove Product</button></td>
+                            </form>
+                        </tr>
+                        <% }) %>
                         <% } %>
                     </tbody>
                 </table>
@@ -79,13 +80,15 @@
                         <% })} %>
                     </select>
                     <div>
-                        <button class="inline-block" type="submit">Add Product</button >
+                        <button class="inline-block" type="submit">Add Product</button>
                     </div>
                 </form>
+                <button onclick="updateProducts()" type="submit">Update Products</button>
+
             </div>
         </div>
-        <button onclick="updateProducts()" type="submit">Update Products</button>
-
+        <div>
+        </div>
     </main>
 
     <footer>
