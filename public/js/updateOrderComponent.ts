@@ -16,13 +16,21 @@ for (let i = 0; i < iloscInputs.length; i++) {
 
         document.getElementById(`cena-ilosc${numId}`).innerHTML = (numCena * numIlosc).toString()
         document.getElementById(`waga-ilosc${numId}`).innerHTML = (numWaga * numIlosc).toString()
-
-
     });
 }
 
 
-function updateProducts(){
+function updateProducts() {
+    let productsToModify = []
+    const iloscInputs = document.getElementsByClassName('ilosc')
+    for (let i = 0; i < iloscInputs.length; i++) {
+        let numId = iloscInputs[i].id.toString().replace('ilosc', '')
+        productsToModify.push({
+            productId : numId,
+            ilosc : iloscInputs[i].value
+        })
+    }
+
     fetch(`${window.location.href.replace(/\/\d+(\?)?$/, '')}/updateproduct`, {
         method: 'PUT',
         headers: {
@@ -30,7 +38,7 @@ function updateProducts(){
         },
         redirect: 'follow',
         body: JSON.stringify({
-
+            productsToModify : productsToModify
         })
     }).then(response => {
         // window.location.reload()
@@ -40,8 +48,8 @@ function updateProducts(){
     )
 }
 
-function test() {
-    alert("1");
-    console.log('1')
-}
-window.onload = test;
+// function test() {
+//     alert("1");
+//     console.log('1')
+// }
+// window.onload = test;

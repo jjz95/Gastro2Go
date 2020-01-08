@@ -17,13 +17,24 @@ for (var i = 0; i < iloscInputs.length; i++) {
     });
 }
 function updateProducts() {
+    var productsToModify = [];
+    var iloscInputs = document.getElementsByClassName('ilosc');
+    for (var i = 0; i < iloscInputs.length; i++) {
+        var numId = iloscInputs[i].id.toString().replace('ilosc', '');
+        productsToModify.push({
+            productId: numId,
+            ilosc: iloscInputs[i].value
+        });
+    }
     fetch(window.location.href.replace(/\/\d+(\?)?$/, '') + "/updateproduct", {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         redirect: 'follow',
-        body: JSON.stringify({})
+        body: JSON.stringify({
+            productsToModify: productsToModify
+        })
     }).then(function (response) {
         // window.location.reload()
         console.log(response);
@@ -31,8 +42,8 @@ function updateProducts() {
         return console.log(e);
     });
 }
-function test() {
-    alert("1");
-    console.log('1');
-}
-window.onload = test;
+// function test() {
+//     alert("1");
+//     console.log('1')
+// }
+// window.onload = test;

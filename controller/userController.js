@@ -120,8 +120,10 @@ router.post("/addproduct", (req, res, next) => {
 })
 
 router.put("/updateproduct", async (req, res, next) => {
-
-    res.redirect('/users');
+    req.body.productsToModify.forEach(pm =>
+        OrderComponent.edit(req.session.loggedUser.id, pm.productId, pm.ilosc)
+    )
+    res.end()
 })
 
 module.exports.route = router; 
