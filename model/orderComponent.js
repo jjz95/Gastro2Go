@@ -1,4 +1,3 @@
-
 //ekstensja klasy (wszystkie obiekty)
 const orderComponentExtent = [];
 
@@ -36,6 +35,14 @@ class OrderComponent {
     //usuwanie obiektu po id
     static delete(idUser, idProduct) {
         return orderComponentExtent.splice(orderComponentExtent.findIndex(u => u.idUser == idUser && u.idProduct == idProduct), 1)
+    }
+
+    static deleteProduct(idProduct) {
+        orderComponentExtent.removeIf(ui => ui.idProduct == idProduct)
+    }
+
+    static deleteUsers(idUser) {
+        orderComponentExtent.removeIf(ui => ui.idUser == idUser)
     }
 
     //metoda resetuje stan bazy i dodaje rekordy testowe

@@ -27,7 +27,7 @@ function deleteSelectedProducts() {
                 productsToDelete: productsToDelete
             })
         }).then(function (response) {
-            // window.location.reload()
+            window.location.reload();
             console.log(response);
         })["catch"](function (e) {
             return console.log(e);

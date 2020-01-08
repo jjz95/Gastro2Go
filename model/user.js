@@ -1,3 +1,5 @@
+var OrderComponent = require('./orderComponent');
+
 const bcrypt = require('bcryptjs');
 
 //licznik id
@@ -62,6 +64,7 @@ class User {
 
     //usuwanie obiektu po id
     static delete(id) {
+        OrderComponent.deleteUsers(id)
         return userExtent.splice(userExtent.findIndex(u => u.id == id), 1)
     }
 

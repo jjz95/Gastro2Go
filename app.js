@@ -5,6 +5,15 @@ const flash = require('express-flash');
 const app = express();
 const port = 3000;
 
+Array.prototype.removeIf = function (callback) {
+    var i = this.length;
+    while (i--) {
+        if (callback(this[i], i)) {
+            this.splice(i, 1);
+        }
+    }
+};
+
 app.use(express.json());
 
 // parsuje dane typu application/x-www-form-urlencoded

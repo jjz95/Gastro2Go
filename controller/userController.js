@@ -119,4 +119,9 @@ router.post("/addproduct", (req, res, next) => {
     res.redirect('/users')
 })
 
+router.put("/updateproduct", async (req, res, next) => {
+
+    res.redirect('/users');
+})
+
 module.exports.route = router; 

@@ -1,3 +1,5 @@
+var OrderComponent = require('./orderComponent');
+
 //licznik id
 let nextId = 1;
 //ekstensja klasy (wszystkie obiekty)
@@ -44,6 +46,7 @@ class Product {
 
     //usuwanie obiektu po id
     static delete(id) {
+        OrderComponent.deleteProduct(id)
         return productExtent.splice(productExtent.findIndex(u => u.id == id), 1)
     }
 
